@@ -1,0 +1,75 @@
+/* Estilos personalizados para la aplicación de reservas con colores Hulux */
+
+/* Fondo de la aplicación */
+html, body {
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  min-height: 100vh;
+}
+
+/* Calendario personalizado */
+.react-calendar {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar__tile--active {
+  background: #E67E22 !important;
+  color: white;
+  border-radius: 6px;
+}
+
+.react-calendar__tile--now {
+  background: #2C3E50;
+  color: white;
+  border-radius: 6px;
+}
+
+.react-calendar__tile:hover {
+  background: #E67E22;
+  color: white;
+  border-radius: 6px;
+}
+
+/* Estilos para badges con mejor contraste */
+.badge.bg-success {
+  background-color: #198754 !important;
+  color: #000000 !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+  color: #111111 !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Alternativa con texto negro para mejor contraste */
+.badge.bg-success-dark {
+  background-color: #d1ecf1 !important;
+  color: #080808 !important;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border: 2px solid #0c5460;
+}
+
+.badge.bg-danger-dark {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border: 2px solid #721c24;
+}
