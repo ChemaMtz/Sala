@@ -266,9 +266,6 @@ Nueva Reserva de Sala - Sistema Hulux
 • Duración: ${calcularDuracion(datosReserva.horaInicio, datosReserva.horaFin)}
 • Materiales: ${datosReserva.materiales.join(', ')}
 
-⏰ RECORDATORIO:
-El material y las llaves deben estar listos 5 minutos antes del inicio.
-
 Sistema de Reservas Hulux
         `
       };
@@ -531,7 +528,7 @@ Sistema de Reservas Hulux
       // Mostrar mensaje adicional con instrucciones importantes
       setTimeout(() => {
         toast.info(
-          "📋 IMPORTANTE: Pasar con administración por las llaves y el material 5 minutos antes de la hora de inicio",
+          "📋 IMPORTANTE: Solicita las llaves y el material a ocupar en el área de administración",
           {
             position: "top-right",
             autoClose: 8000,
@@ -705,18 +702,18 @@ Sistema de Reservas Hulux
         </div>
 
         {/* Contenido principal - Calendario y Formulario */}
-        <div className="row g-3 flex-grow-1 align-items-stretch flex-column-reverse flex-lg-row mx-0">
-          {/* Columna Formulario (1/3) */}
-          <div className="col-12 col-lg-4 col-xl-3 d-flex flex-column" style={{minHeight:'0'}}>
+        <div className="row g-2 g-lg-3 flex-grow-1 align-items-stretch flex-column-reverse flex-lg-row mx-0">
+          {/* Columna Formulario - Responsiva */}
+          <div className="col-12 col-lg-4 col-xl-3 d-flex flex-column mb-3 mb-lg-0" style={{minHeight:'0'}}>
             <div className="card shadow-sm flex-grow-1">
-              <div className="card-header bg-white border-0 pb-0">
-                <h5 className="card-title text-center fw-semibold">
+              <div className="card-header bg-white border-0 pb-2 pb-lg-0">
+                <h5 className="card-title text-center fw-semibold fs-6 fs-lg-5">
                   <FaClipboardList className="me-2 text-success" />
                   Datos de Reserva
                 </h5>
               </div>
-              <div className="card-body overflow-auto pt-3 d-flex flex-column" style={{minHeight:'0'}}>
-                <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+              <div className="card-body overflow-auto pt-2 pt-lg-3 d-flex flex-column px-2 px-lg-3" style={{minHeight:'0'}}>
+                <form onSubmit={handleSubmit} className="d-flex flex-column gap-2 gap-lg-3">
                   <div>
                     <label className="form-label fw-semibold small">Nombre*</label>
                     <input
@@ -724,7 +721,7 @@ Sistema de Reservas Hulux
                       name="nombre"
                       value={formData.nombre}
                       onChange={handleInputChange}
-                      className="form-control"
+                      className="form-control form-control-sm form-control-lg-normal"
                       placeholder="Ej. Quien lo solicita"
                       required
                     />
@@ -736,7 +733,7 @@ Sistema de Reservas Hulux
                       name="categoria"
                       value={formData.categoria}
                       onChange={handleInputChange}
-                      className="form-select"
+                      className="form-select form-select-sm form-select-lg-normal"
                       required
                     >
                       <option value="">Selecciona una opción</option>
@@ -744,7 +741,6 @@ Sistema de Reservas Hulux
                       <option value="Presentación cliente">Presentación cliente</option>
                       <option value="Entrevista">Entrevista</option>
                       <option value="Capacitación">Capacitación</option>
-                      <option value="Videoconferencia">Videoconferencia</option>
                       <option value="Otro">Otro</option>
                     </select>
                     
@@ -767,23 +763,23 @@ Sistema de Reservas Hulux
 
                   {/* Selección de horarios mejorada */}
                   <div className="mb-3">
-                    <label className="form-label fw-bold mb-3" style={{color: 'var(--hulux-azul-oscuro)'}}>
+                    <label className="form-label fw-bold mb-2 mb-lg-3" style={{color: 'var(--hulux-azul-oscuro)'}}>
                       <FaClock className="me-2" style={{color: 'var(--hulux-naranja)'}} />
                       Horario de la reserva*
                     </label>
                     
-                    <div className="row g-3">
+                    <div className="row g-2 g-lg-3">
                       <div className="col-6">
-                        <label className="form-label fw-semibold">Hora inicio</label>
+                        <label className="form-label fw-semibold small">Hora inicio</label>
                         <select
                           name="horaInicio"
                           value={formData.horaInicio}
                           onChange={handleHoraInicioChange}
                           className="form-select form-select-lg"
                           style={{
-                            fontSize: '1.1rem',
-                            padding: '0.75rem 1rem',
-                            minHeight: '50px'
+                            fontSize: window.innerWidth <= 576 ? '0.9rem' : '1.1rem',
+                            padding: window.innerWidth <= 576 ? '0.5rem 0.75rem' : '0.75rem 1rem',
+                            minHeight: window.innerWidth <= 576 ? '42px' : '50px'
                           }}
                           required
                         >
@@ -794,7 +790,7 @@ Sistema de Reservas Hulux
                               value={hora}
                               disabled={!esHorarioDisponible(hora)}
                               style={{
-                                fontSize: '1.1rem',
+                                fontSize: window.innerWidth <= 576 ? '0.9rem' : '1.1rem',
                                 padding: '8px',
                                 backgroundColor: esHorarioDisponible(hora) ? '' : 'rgba(220, 53, 69, 0.1)',
                                 color: esHorarioDisponible(hora) ? 'var(--hulux-azul-oscuro)' : '#dc3545'
@@ -807,16 +803,16 @@ Sistema de Reservas Hulux
                       </div>
                       
                       <div className="col-6">
-                        <label className="form-label fw-semibold">Hora fin</label>
+                        <label className="form-label fw-semibold small">Hora fin</label>
                         <select
                           name="horaFin"
                           value={formData.horaFin}
                           onChange={handleInputChange}
                           className="form-select form-select-lg"
                           style={{
-                            fontSize: '1.1rem',
-                            padding: '0.75rem 1rem',
-                            minHeight: '50px'
+                            fontSize: window.innerWidth <= 576 ? '0.9rem' : '1.1rem',
+                            padding: window.innerWidth <= 576 ? '0.5rem 0.75rem' : '0.75rem 1rem',
+                            minHeight: window.innerWidth <= 576 ? '42px' : '50px'
                           }}
                           required
                           disabled={!formData.horaInicio}
@@ -843,11 +839,11 @@ Sistema de Reservas Hulux
 
                   {/* Botones de duración rápida */}
                   {formData.horaInicio && (
-                    <div className="mb-3">
-                      <label className="form-label fw-semibold text-muted mb-2">
+                    <div className="mb-2 mb-lg-3">
+                      <label className="form-label fw-semibold text-muted mb-2 small">
                         ⚡ Duración rápida:
                       </label>
-                      <div className="d-flex gap-2 flex-wrap">
+                      <div className="d-flex gap-1 gap-lg-2 flex-wrap">
                         {['30min', '1h', '1h 30min', '2h', '3h'].map(duracion => {
                           const horaFin = calcularHoraFin(formData.horaInicio, duracion)
                           const disponible = horaFin && horaFin <= '22:30'
@@ -855,11 +851,11 @@ Sistema de Reservas Hulux
                             <button
                               key={duracion}
                               type="button"
-                              className={`btn ${formData.horaFin === horaFin ? 'btn-primary' : 'btn-outline-primary'}`}
+                              className={`btn btn-sm ${formData.horaFin === horaFin ? 'btn-primary' : 'btn-outline-primary'}`}
                               style={{
-                                fontSize: '0.95rem',
-                                padding: '8px 16px',
-                                minWidth: '80px',
+                                fontSize: window.innerWidth <= 576 ? '0.75rem' : '0.95rem',
+                                padding: window.innerWidth <= 576 ? '6px 12px' : '8px 16px',
+                                minWidth: window.innerWidth <= 576 ? '65px' : '80px',
                                 fontWeight: '600'
                               }}
                               disabled={!disponible}
@@ -913,7 +909,7 @@ Sistema de Reservas Hulux
                     </label>
                     <small className="text-muted d-block mb-2">Selecciona al menos un material</small>
                     <div className="d-flex flex-column gap-1">
-                      {['Proyector', 'Pizarra', 'Sistema de audio', 'Videoconferencia'].map(material => (
+                      {['Proyector', 'Pizarra', 'Sistema de audio', 'HDMI', 'No requiero material'].map(material => (
                         <div key={material} className="form-check form-check-inline">
                           <input
                             type="checkbox"
@@ -954,11 +950,11 @@ Sistema de Reservas Hulux
             </div>
           </div>
 
-          {/* Columna Calendario (2/3) */}
+          {/* Columna Calendario - Responsiva */}
           <div className="col-12 col-lg-8 col-xl-9 d-flex flex-column" style={{minHeight:'0'}}>
             <div className="card shadow-sm flex-grow-1 d-flex flex-column">
-              <div className="card-header bg-white border-0 pb-0">
-                <h5 className="card-title text-center fw-semibold">
+              <div className="card-header bg-white border-0 pb-1 pb-lg-0">
+                <h5 className="card-title text-center fw-semibold fs-6 fs-lg-5">
                   <FaCalendarAlt className="me-2 text-primary" />
                   Calendario de Reservas
                 </h5>
@@ -971,7 +967,7 @@ Sistema de Reservas Hulux
                   })}
                 </p>
               </div>
-              <div className="card-body d-flex flex-column justify-content-center p-4" style={{minHeight: '500px'}}>
+              <div className="card-body d-flex flex-column justify-content-center p-2 p-lg-4" style={{minHeight: window.innerWidth <= 576 ? '350px' : '500px'}}>
                 <div className="d-flex justify-content-center flex-grow-1 align-items-center">
                   <Calendar
                     onChange={setSelectedDate}

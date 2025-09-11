@@ -166,7 +166,7 @@ function MisReservas({ user, onVolver }) {
           ) : (
           <div className="row g-3">
             {reservas.map((reserva) => (
-              <div key={reserva.id} className="col-md-6 col-lg-4">
+              <div key={reserva.id} className="col-12 col-md-6 col-lg-4">
                 <div className={`card h-100 ${esPasada(reserva.fecha) ? 'border-secondary' : ''}`} 
                      style={{
                        borderColor: esPasada(reserva.fecha) ? '#6c757d' : 'var(--hulux-naranja)',

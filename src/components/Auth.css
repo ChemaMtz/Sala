@@ -110,3 +110,75 @@
   color: var(--hulux-morado) !important;
   font-weight: 400;
 }
+
+/* Responsive para formularios de autenticación */
+@media (max-width: 576px) {
+  .login-container, .register-container {
+    padding: 1rem;
+  }
+  
+  .card {
+    margin: 0;
+    border-radius: 15px;
+  }
+  
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-control, .form-select {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  
+  .btn-lg {
+    padding: 0.875rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-text {
+    font-size: 0.8rem;
+  }
+  
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .alert {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .row.justify-content-center {
+    margin: 0;
+  }
+  
+  .col-md-6, .col-lg-5 {
+    padding: 0;
+  }
+}
