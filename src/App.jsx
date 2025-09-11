@@ -1042,7 +1042,7 @@ Sistema de Reservas Hulux
                     <div className="alert alert-warning mt-2 py-2">
                       <small>
                         <FaExclamationTriangle className="me-1" />
-                        <strong>Importante:</strong> Asegúrate de elegir un horario que no se solape con las reservas existentes.
+                        <strong>Importante:</strong> Asegúrese de elegir un horario no reservado.
                       </small>
                     </div>
                   </div>
