@@ -136,34 +136,34 @@ function AdminPanel({ user, onVolver }) {
       <div className="row g-4 mb-4">
         <div className="col-md-4">
           <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, var(--hulux-morado) 0%, var(--hulux-celeste) 100%)', borderRadius: '15px'}}>
-            <div className="card-body text-center p-4" style={{color: 'black'}}>
+            <div className="card-body text-center p-4" style={{color: 'white'}}>
               <div className="d-flex align-items-center justify-content-center mb-3">
                 <FaChartBar style={{fontSize: '2.5rem', color: 'white'}} />
               </div>
-              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'black'}}>{estadisticas.total}</h2>
-              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'black'}}>Total de Reservas</p>
+              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'white'}}>{estadisticas.total}</h2>
+              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'white'}}>Total de Reservas</p>
             </div>
           </div>
         </div>
         <div className="col-md-4">
           <div className="card border-0 shadow-lg h-100" style={{background: 'var(--hulux-naranja)', borderRadius: '15px'}}>
-            <div className="card-body text-center p-4" style={{color: 'black'}}>
+            <div className="card-body text-center p-4" style={{color: 'white'}}>
               <div className="d-flex align-items-center justify-content-center mb-3">
-                <FaCalendarAlt style={{fontSize: '2.5rem', opacity: 0.8}} />
+                <FaCalendarAlt style={{fontSize: '2.5rem', color: 'white', opacity: 0.9}} />
               </div>
-              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'black'}}>{estadisticas.hoy}</h2>
-              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'black'}}>Reservas Hoy</p>
+              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'white'}}>{estadisticas.hoy}</h2>
+              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'white'}}>Reservas Hoy</p>
             </div>
           </div>
         </div>
         <div className="col-md-4">
           <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, var(--hulux-morado) 0%, var(--hulux-celeste) 100%)', borderRadius: '15px'}}>
-            <div className="card-body text-center p-4" style={{color: 'black'}}>
+            <div className="card-body text-center p-4" style={{color: 'white'}}>
               <div className="d-flex align-items-center justify-content-center mb-3">
-                <FaUser style={{fontSize: '2.5rem', opacity: 0.8}} />
+                <FaUser style={{fontSize: '2.5rem', color: 'white', opacity: 0.9}} />
               </div>
-              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'black'}}>{estadisticas.esteMes}</h2>
-              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'black'}}>Reservas Este Mes</p>
+              <h2 className="mb-2 fw-bold" style={{fontSize: '2.5rem', color: 'white'}}>{estadisticas.esteMes}</h2>
+              <p className="mb-0 opacity-75 fw-semibold" style={{color: 'white'}}>Reservas Este Mes</p>
             </div>
           </div>
         </div>

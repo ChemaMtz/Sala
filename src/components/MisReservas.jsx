@@ -167,15 +167,24 @@ function MisReservas({ user, onVolver }) {
           <div className="row g-3">
             {reservas.map((reserva) => (
               <div key={reserva.id} className="col-md-6 col-lg-4">
-                <div className={`card h-100 ${esPasada(reserva.fecha) ? 'border-secondary' : 'border-success'}`}>
+                <div className={`card h-100 ${esPasada(reserva.fecha) ? 'border-secondary' : ''}`} 
+                     style={{
+                       borderColor: esPasada(reserva.fecha) ? '#6c757d' : 'var(--hulux-naranja)',
+                       borderWidth: '2px'
+                     }}>
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-start mb-2">
-                      <h6 className="card-title mb-0 fw-bold">{reserva.nombre}</h6>
+                      <h6 className="card-title mb-0 fw-bold" style={{color: 'var(--hulux-azul-oscuro)'}}>{reserva.nombre}</h6>
                       {!esPasada(reserva.fecha) && (
                         <button
-                          className="btn btn-outline-danger btn-sm"
+                          className="btn btn-sm"
                           onClick={() => cancelarReserva(reserva.id, reserva)}
                           title="Cancelar reserva"
+                          style={{
+                            backgroundColor: '#dc3545',
+                            borderColor: '#dc3545',
+                            color: 'white'
+                          }}
                         >
                           <FaTrash />
                         </button>
@@ -187,29 +196,37 @@ function MisReservas({ user, onVolver }) {
                         <FaCalendarAlt className="me-1" />
                         {formatearFecha(reserva.fecha)}
                       </small>
-                      <span className={`badge ${esPasada(reserva.fecha) ? 'bg-secondary' : 'bg-success'}`}>
+                      <span className="badge" 
+                            style={{
+                              backgroundColor: esPasada(reserva.fecha) ? '#6c757d' : 'var(--hulux-azul-oscuro)',
+                              color: 'white'
+                            }}>
                         <FaClock className="me-1" />
                         {reserva.horaInicio} - {reserva.horaFin}
                       </span>
                     </div>
 
                     <div className="mb-2">
-                      <span className="badge bg-primary mb-1">{reserva.categoria}</span>
+                      <span className="badge mb-1" 
+                            style={{
+                              backgroundColor: 'var(--hulux-naranja)',
+                              color: 'white'
+                            }}>{reserva.categoria}</span>
                     </div>
 
                     {reserva.materiales?.length > 0 && (
                       <div className="mb-2">
                         <small className="text-dark">
-                          <strong style={{color: '#2C3E50'}}>Materiales:</strong> 
-                          <span style={{color: '#495057'}}>{reserva.materiales.join(', ')}</span>
+                          <strong style={{color: 'var(--hulux-azul-oscuro)'}}>Materiales:</strong> 
+                          <span style={{color: 'var(--hulux-azul-medio)'}}>{reserva.materiales.join(', ')}</span>
                         </small>
                       </div>
                     )}
 
                     {esPasada(reserva.fecha) && (
-                      <div className="text-secondary">
+                      <div style={{color: 'var(--hulux-azul-oscuro)'}}>
                         <small>
-                          <FaExclamationTriangle className="me-1" />
+                          <FaExclamationTriangle className="me-1" style={{color: 'var(--hulux-naranja)'}} />
                           <strong>Reserva pasada</strong>
                         </small>
                       </div>

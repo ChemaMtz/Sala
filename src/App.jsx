@@ -9,13 +9,21 @@ import AdminPanel from './components/AdminPanel'
 import MisReservas from './components/MisReservas'
 import { auth, db } from './firebase/config'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
-import { collection, addDoc, query, where, doc, getDoc, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc, query, where, doc, getDoc, onSnapshot, getDocs } from 'firebase/firestore'
 import { FaCalendarAlt, FaClipboardList, FaSignOutAlt, FaUser, FaCog, FaClock, FaExclamationTriangle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import huluxBackground from './assets/huluxfondo.jpeg'
+import emailjs from '@emailjs/browser'
+import { EMAIL_CONFIG } from './config/emailConfig'
 
 function App() {
+  // Inicializar EmailJS
+  useEffect(() => {
+    // Inicializar EmailJS con la clave pública
+    emailjs.init(EMAIL_CONFIG.PUBLIC_KEY)
+  }, [])
+
   const [currentView, setCurrentView] = useState('login') // 'login', 'register', 'dashboard'
   const [user, setUser] = useState(null)
   const [userRole, setUserRole] = useState('usuario') // 'usuario' o 'admin'
@@ -29,8 +37,10 @@ function App() {
     horaFin: '',
     materiales: []
   })
+  const [categoriaPersonalizada, setCategoriaPersonalizada] = useState('')
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [reservas, setReservas] = useState([]) // Reservas del día seleccionado
+  const [reservaGuardandose, setReservaGuardandose] = useState(null) // Para manejar el estado optimista
 
   // Aplica el fondo de Hulux globalmente en toda la aplicación usando JavaScript
   useEffect(() => {
@@ -138,11 +148,19 @@ function App() {
       // Ordenar por hora de inicio
       reservasDelDia.sort((a, b) => a.horaInicio.localeCompare(b.horaInicio))
       setReservas(reservasDelDia)
+      
+      // Limpiar el estado de reserva guardándose cuando se actualicen las reservas
+      setReservaGuardandose(null)
     }, (error) => {
       console.error('Error al cargar reservas en tiempo real:', error)
     })
 
     return () => unsubscribe()
+  }, [selectedDate])
+
+  // Limpiar estado de reserva guardándose cuando cambie la fecha
+  useEffect(() => {
+    setReservaGuardandose(null)
   }, [selectedDate])
 
   // Generar opciones de horarios (cada 30 minutos de 8:00 a 22:00)
@@ -214,6 +232,63 @@ function App() {
     return `${nuevaHora.toString().padStart(2, '0')}:${nuevoMinuto.toString().padStart(2, '0')}`
   }
 
+  // Función para enviar correo de confirmación
+  const enviarCorreoConfirmacion = async (datosReserva) => {
+    try {
+      // Verificar que EmailJS esté configurado
+      if (!EMAIL_CONFIG.SERVICE_ID || EMAIL_CONFIG.SERVICE_ID === 'your_service_id' ||
+          !EMAIL_CONFIG.TEMPLATE_ID || EMAIL_CONFIG.TEMPLATE_ID === 'your_template_id' ||
+          !EMAIL_CONFIG.PUBLIC_KEY || EMAIL_CONFIG.PUBLIC_KEY === 'your_public_key') {
+        console.warn('EmailJS no está completamente configurado. Saltando envío de email.');
+        return false;
+      }
+
+      const templateParams = {
+        to_email: EMAIL_CONFIG.TO_EMAIL,
+        from_name: 'Sistema de Reservas Hulux',
+        usuario_nombre: datosReserva.usuarioEmail,
+        reserva_nombre: datosReserva.nombre,
+        reserva_categoria: datosReserva.categoria,
+        reserva_fecha: datosReserva.fechaFormateada,
+        reserva_hora_inicio: datosReserva.horaInicio,
+        reserva_hora_fin: datosReserva.horaFin,
+        reserva_duracion: calcularDuracion(datosReserva.horaInicio, datosReserva.horaFin),
+        reserva_materiales: datosReserva.materiales.join(', '),
+        mensaje_completo: `
+Nueva Reserva de Sala - Sistema Hulux
+
+📋 DETALLES DE LA RESERVA:
+• Solicitante: ${datosReserva.usuarioEmail}
+• Nombre/Evento: ${datosReserva.nombre}
+• Categoría: ${datosReserva.categoria}
+• Fecha: ${datosReserva.fechaFormateada}
+• Horario: ${datosReserva.horaInicio} - ${datosReserva.horaFin}
+• Duración: ${calcularDuracion(datosReserva.horaInicio, datosReserva.horaFin)}
+• Materiales: ${datosReserva.materiales.join(', ')}
+
+⏰ RECORDATORIO:
+El material y las llaves deben estar listos 5 minutos antes del inicio.
+
+Sistema de Reservas Hulux
+        `
+      };
+
+      const result = await emailjs.send(
+        EMAIL_CONFIG.SERVICE_ID,
+        EMAIL_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAIL_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Correo enviado exitosamente:', result);
+      return true;
+    } catch (error) {
+      console.error('Error al enviar correo:', error);
+      // No bloquear la aplicación si falla el email
+      return false;
+    }
+  };
+
   // Calcular duración entre dos horas
   const calcularDuracion = (horaInicio, horaFin) => {
     if (!horaInicio || !horaFin) return ''
@@ -233,19 +308,36 @@ function App() {
   }
 
   // Validar conflictos de horario
-  const validarHorario = (horaInicio, horaFin, fechaReserva) => {
-    const reservasDelDia = reservas.filter(r => r.fecha === fechaReserva)
+  const validarHorario = (horaInicio, horaFin, fechaReserva, reservaIdAIgnorar = null) => {
+    const reservasDelDia = reservas.filter(r => 
+      r.fecha === fechaReserva && 
+      (reservaIdAIgnorar ? r.id !== reservaIdAIgnorar : true)
+    )
+    
+    // Si hay una reserva guardándose, no la consideres como conflicto
+    if (reservaGuardandose && 
+        reservaGuardandose.fecha === fechaReserva &&
+        reservaGuardandose.horaInicio === horaInicio &&
+        reservaGuardandose.horaFin === horaFin) {
+      // Esta es la reserva que se está guardando, no es conflicto
+      return { valido: true, mensaje: '' }
+    }
     
     for (const reserva of reservasDelDia) {
       const inicioExistente = reserva.horaInicio
       const finExistente = reserva.horaFin
       
-      // Verificar solapamiento de horarios
-      if (
-        (horaInicio >= inicioExistente && horaInicio < finExistente) ||
-        (horaFin > inicioExistente && horaFin <= finExistente) ||
-        (horaInicio <= inicioExistente && horaFin >= finExistente)
-      ) {
+      // Verificar solapamiento de horarios - Lógica mejorada
+      const inicioNuevo = horaInicio
+      const finNuevo = horaFin
+      
+      // Hay conflicto si:
+      // 1. La nueva reserva empieza antes de que termine una existente Y termina después de que empiece la existente
+      const hayConflicto = (
+        (inicioNuevo < finExistente && finNuevo > inicioExistente)
+      )
+      
+      if (hayConflicto) {
         return {
           valido: false,
           mensaje: `Conflicto de horario con la reserva de "${reserva.nombre}" (${reserva.horaInicio}-${reserva.horaFin})`
@@ -274,6 +366,14 @@ function App() {
       }
     }
 
+    // Validar categoría personalizada cuando se selecciona "Otro"
+    if (formData.categoria === 'Otro' && (!categoriaPersonalizada || categoriaPersonalizada.trim() === '')) {
+      return {
+        valido: false,
+        mensaje: 'Debe especificar la categoría personalizada'
+      }
+    }
+
     // Validar que se haya seleccionado al menos un material adicional
     if (!formData.materiales || formData.materiales.length === 0) {
       return {
@@ -287,11 +387,18 @@ function App() {
 
   // Verificar si el formulario está completo para habilitar/deshabilitar el botón
   const formularioCompleto = () => {
-    return formData.nombre.trim() !== '' &&
-           formData.categoria !== '' &&
-           formData.horaInicio !== '' &&
-           formData.horaFin !== '' &&
-           formData.materiales.length > 0
+    const camposBasicosCompletos = formData.nombre.trim() !== '' &&
+                                   formData.categoria !== '' &&
+                                   formData.horaInicio !== '' &&
+                                   formData.horaFin !== '' &&
+                                   formData.materiales.length > 0;
+    
+    // Si se selecciona "Otro", también debe completar la categoría personalizada
+    if (formData.categoria === 'Otro') {
+      return camposBasicosCompletos && categoriaPersonalizada.trim() !== '';
+    }
+    
+    return camposBasicosCompletos;
   }
 
   // Manejar cambios en formulario
@@ -304,6 +411,11 @@ function App() {
       setFormData(prev => ({ ...prev, materiales }))
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
+      
+      // Limpiar categoría personalizada si se cambia de "Otro" a otra opción
+      if (name === 'categoria' && value !== 'Otro') {
+        setCategoriaPersonalizada('')
+      }
     }
   }
 
@@ -328,22 +440,45 @@ function App() {
       return
     }
 
-    // Validar conflictos de horario
+    // Validar conflictos de horario con datos actuales
     const fechaReserva = selectedDate.toDateString()
-    const validacion = validarHorario(formData.horaInicio, formData.horaFin, fechaReserva)
     
-    if (!validacion.valido) {
-      toast.error(validacion.mensaje, {
-        position: "top-right",
-        autoClose: 3000
-      })
-      return
-    }
-
+    // Hacer una consulta fresca a la base de datos para asegurar datos actualizados
     try {
-      await addDoc(collection(db, 'reservas'), {
+      const q = query(
+        collection(db, 'reservas'),
+        where('fecha', '==', fechaReserva)
+      )
+      
+      // Obtener reservas más recientes para validación final
+      const querySnapshot = await getDocs(q)
+      const reservasActuales = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      
+      // Validar contra las reservas más actuales
+      for (const reserva of reservasActuales) {
+        const inicioExistente = reserva.horaInicio
+        const finExistente = reserva.horaFin
+        const inicioNuevo = formData.horaInicio
+        const finNuevo = formData.horaFin
+        
+        if (inicioNuevo < finExistente && finNuevo > inicioExistente) {
+          toast.error(`Conflicto de horario con la reserva de "${reserva.nombre}" (${reserva.horaInicio}-${reserva.horaFin})`, {
+            position: "top-right",
+            autoClose: 3000
+          })
+          return
+        }
+      }
+
+      const categoriaFinal = formData.categoria === 'Otro' ? categoriaPersonalizada : formData.categoria;
+      
+      // Marcar que se está guardando esta reserva
+      const nuevaReserva = {
         nombre: formData.nombre,
-        categoria: formData.categoria,
+        categoria: categoriaFinal,
         horaInicio: formData.horaInicio,
         horaFin: formData.horaFin,
         materiales: formData.materiales,
@@ -351,10 +486,38 @@ function App() {
         fechaCreacion: new Date(),
         usuarioId: user.uid,
         usuarioEmail: user.email
-      })
+      }
+      
+      setReservaGuardandose(nuevaReserva)
+      
+      await addDoc(collection(db, 'reservas'), nuevaReserva)
+
+      // Enviar correo de confirmación
+      const datosCorreo = {
+        usuarioEmail: user.email,
+        nombre: formData.nombre,
+        categoria: categoriaFinal,
+        fechaFormateada: selectedDate.toLocaleDateString('es-ES', { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+        horaInicio: formData.horaInicio,
+        horaFin: formData.horaFin,
+        materiales: formData.materiales
+      };
+
+      // Intentar enviar el correo (no bloquear si falla)
+      const correoEnviado = await enviarCorreoConfirmacion(datosCorreo);
+      if (correoEnviado) {
+        console.log('Correo de confirmación enviado exitosamente');
+      } else {
+        console.log('No se pudo enviar el correo de confirmación');
+      }
 
       toast.success(
-        `¡Reserva confirmada! ${formData.nombre} - ${formData.categoria} el ${selectedDate.toLocaleDateString('es-ES')} de ${formData.horaInicio} a ${formData.horaFin}`,
+        `¡Reserva confirmada! ${formData.nombre} - ${categoriaFinal} el ${selectedDate.toLocaleDateString('es-ES')} de ${formData.horaInicio} a ${formData.horaFin}`,
         {
           position: "top-right",
           autoClose: 6000,
@@ -392,11 +555,19 @@ function App() {
         horaFin: '',
         materiales: []
       })
+      setCategoriaPersonalizada('')
+      
+      // Limpiar el estado de reserva guardándose después de un breve delay
+      setTimeout(() => {
+        setReservaGuardandose(null)
+      }, 2000)
       
       // Las reservas se actualizarán automáticamente por onSnapshot
       
     } catch (error) {
       console.error('Error al guardar reserva:', error)
+      // Limpiar estado en caso de error también
+      setReservaGuardandose(null)
       toast.error('Error al crear la reserva. Intenta nuevamente.', {
         position: "top-right",
         autoClose: 3000
@@ -576,6 +747,22 @@ function App() {
                       <option value="Videoconferencia">Videoconferencia</option>
                       <option value="Otro">Otro</option>
                     </select>
+                    
+                    {/* Campo para categoría personalizada cuando se selecciona "Otro" */}
+                    {formData.categoria === 'Otro' && (
+                      <div className="mt-2">
+                        <label className="form-label fw-semibold small">Especifica la categoría*</label>
+                        <input
+                          type="text"
+                          name="categoriaPersonalizada"
+                          value={categoriaPersonalizada}
+                          onChange={(e) => setCategoriaPersonalizada(e.target.value)}
+                          className="form-control"
+                          placeholder="Escribe la categoría personalizada..."
+                          required
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Selección de horarios mejorada */}
