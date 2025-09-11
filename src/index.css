@@ -2,18 +2,34 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --bg-color: #f5f7fb;
-  --bg-gradient-ocean: radial-gradient(circle at 20% 20%, #e0f7ff 0%, #b3e9f7 35%, #8dd6ee 60%, #6bbddc 85%);
-  --bg-gradient-forest: radial-gradient(circle at 80% 30%, #e9fbea 0%, #c9f0ce 35%, #a3e0ae 60%, #7fc68b 85%);
-  --bg-gradient-sunset: radial-gradient(circle at 30% 70%, #fff4e6 0%, #ffd7b8 35%, #ffb48f 60%, #ff9073 85%);
-  --bg-gradient-night: radial-gradient(circle at 50% 50%, #1e293b 0%, #162132 55%, #0f1826 100%);
-  /* Colores base para tiles (fallback) */
-  --color-accent: #0fae91;
-  --color-accent-soft: #4fd1c5;
+  
+  /* Paleta de colores corporativos Hulux */
+  --hulux-azul-oscuro: #11293E;
+  --hulux-naranja: #FF5E00;
+  --hulux-verde-lima: #CDDB00;
+  --hulux-morado: #70003F;
+  --hulux-celeste: #94EDF2;
+  --hulux-gris-claro: #F2F2F2;
+  
+  /* Variables para uso en la aplicación */
+  --bg-color: var(--hulux-gris-claro);
+  --primary-color: var(--hulux-azul-oscuro);
+  --accent-color: var(--hulux-naranja);
+  --secondary-color: var(--hulux-verde-lima);
+  --tertiary-color: var(--hulux-morado);
+  --light-color: var(--hulux-celeste);
+  
+  /* Gradientes con colores Hulux */
+  --bg-gradient-primary: linear-gradient(135deg, var(--hulux-azul-oscuro) 0%, var(--hulux-morado) 50%, var(--hulux-celeste) 100%);
+  --bg-gradient-accent: linear-gradient(135deg, var(--hulux-naranja) 0%, var(--hulux-verde-lima) 100%);
+  
+  /* Colores para tiles del calendario */
+  --color-accent: var(--hulux-naranja);
+  --color-accent-soft: var(--hulux-celeste);
   --color-danger-soft: #fecaca;
   --color-danger: #ef4444;
-  --color-today-start: #60a5fa;
-  --color-today-end: #3b82f6;
+  --color-today-start: var(--hulux-azul-oscuro);
+  --color-today-end: var(--hulux-morado);
 }
 
 * { box-sizing: border-box; }

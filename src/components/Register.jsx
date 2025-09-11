@@ -166,9 +166,9 @@ function Register({ onRegister, switchToLogin }) {
       <div className="container-fluid d-flex align-items-center justify-content-center flex-grow-1 py-4">
         <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
           <div className="card shadow-lg">
-            <div className="card-header text-center border-0 pb-0" style={{background: '#2C3E50', color: 'black', borderRadius: '0.375rem 0.375rem 0 0'}}>
+            <div className="card-header text-center border-0 pb-0" style={{background: 'var(--hulux-azul-oscuro)', color: 'white', borderRadius: '0.375rem 0.375rem 0 0'}}>
               <h2 className="fw-bold mb-1">🏢 Reserva Salas</h2>
-              <h4 className="fw-semibold" style={{color: '#E67E22'}}>Crear Cuenta</h4>
+              <h4 className="fw-semibold" style={{color: 'var(--hulux-naranja)'}}>Crear Cuenta</h4>
               <p className="small mb-0 opacity-75">Únete para gestionar reservas de salas</p>
             </div>
             <div className="card-body pt-4">
@@ -273,7 +273,7 @@ function Register({ onRegister, switchToLogin }) {
                   type="submit" 
                   className="btn btn-lg fw-semibold w-100 text-white" 
                   disabled={isLoading}
-                  style={{backgroundColor: '#2C3E50', borderColor: '#2C3E50'}}
+                  style={{backgroundColor: 'var(--hulux-azul-oscuro)', borderColor: 'var(--hulux-azul-oscuro)'}}
                 >
                   {isLoading ? (
                     <>
@@ -294,7 +294,7 @@ function Register({ onRegister, switchToLogin }) {
                   className="btn btn-lg fw-semibold w-100 text-white" 
                   onClick={handleGoogleSignUp}
                   disabled={isLoading}
-                  style={{backgroundColor: '#E67E22', borderColor: '#E67E22'}}
+                  style={{backgroundColor: 'var(--hulux-naranja)', borderColor: 'var(--hulux-naranja)'}}
                 >
                   <FaGoogle className="me-2" />
                   Registrarse con Google

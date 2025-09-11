@@ -13,6 +13,7 @@ import { collection, addDoc, query, where, doc, getDoc, onSnapshot } from 'fireb
 import { FaCalendarAlt, FaClipboardList, FaSignOutAlt, FaUser, FaCog, FaClock, FaExclamationTriangle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import huluxBackground from './assets/huluxfondo.jpeg'
 
 function App() {
   const [currentView, setCurrentView] = useState('login') // 'login', 'register', 'dashboard'
@@ -30,6 +31,50 @@ function App() {
   })
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [reservas, setReservas] = useState([]) // Reservas del día seleccionado
+
+  // Aplica el fondo de Hulux globalmente en toda la aplicación usando JavaScript
+  useEffect(() => {
+    // Aplicar la imagen de fondo directamente con JavaScript
+    document.body.style.backgroundImage = `url(${huluxBackground})`
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center center'
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundAttachment = 'fixed'
+    document.body.style.minHeight = '100vh'
+    
+    // Aplicar overlay para mejorar legibilidad
+    const overlay = document.createElement('div')
+    overlay.id = 'hulux-overlay'
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 41, 62, 0.15);
+      z-index: -1;
+      pointer-events: none;
+    `
+    
+    // Solo agregar el overlay si no existe
+    if (!document.getElementById('hulux-overlay')) {
+      document.body.appendChild(overlay)
+    }
+    
+    return () => {
+      // Limpiar estilos y overlay al desmontar
+      document.body.style.backgroundImage = ''
+      document.body.style.backgroundSize = ''
+      document.body.style.backgroundPosition = ''
+      document.body.style.backgroundRepeat = ''
+      document.body.style.backgroundAttachment = ''
+      
+      const existingOverlay = document.getElementById('hulux-overlay')
+      if (existingOverlay) {
+        existingOverlay.remove()
+      }
+    }
+  }, [])
 
   // Aplica el tema oceano
   useEffect(() => {
@@ -211,6 +256,44 @@ function App() {
     return { valido: true, mensaje: '' }
   }
 
+  // Validar que todos los campos obligatorios estén llenos
+  const validarFormulario = () => {
+    const camposObligatorios = {
+      nombre: 'Nombre',
+      categoria: 'Categoría',
+      horaInicio: 'Hora de inicio',
+      horaFin: 'Hora de fin'
+    }
+
+    for (const [campo, etiqueta] of Object.entries(camposObligatorios)) {
+      if (!formData[campo] || formData[campo].trim() === '') {
+        return {
+          valido: false,
+          mensaje: `El campo "${etiqueta}" es obligatorio`
+        }
+      }
+    }
+
+    // Validar que se haya seleccionado al menos un material adicional
+    if (!formData.materiales || formData.materiales.length === 0) {
+      return {
+        valido: false,
+        mensaje: 'Debe seleccionar al menos un material adicional'
+      }
+    }
+
+    return { valido: true, mensaje: '' }
+  }
+
+  // Verificar si el formulario está completo para habilitar/deshabilitar el botón
+  const formularioCompleto = () => {
+    return formData.nombre.trim() !== '' &&
+           formData.categoria !== '' &&
+           formData.horaInicio !== '' &&
+           formData.horaFin !== '' &&
+           formData.materiales.length > 0
+  }
+
   // Manejar cambios en formulario
   const handleInputChange = (e) => {
     const { name, value, type } = e.target
@@ -228,8 +311,9 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (!formData.nombre || !formData.categoria || !formData.horaInicio || !formData.horaFin) {
-      toast.error('Por favor, completa todos los campos obligatorios', {
+    const resultadoValidacion = validarFormulario()
+    if (!resultadoValidacion.valido) {
+      toast.error(resultadoValidacion.mensaje, {
         position: "top-right",
         autoClose: 3000
       })
@@ -377,13 +461,22 @@ function App() {
       <div className="container-fluid p-4 d-flex flex-column app-container">
         {/* Header con navegación */}
         <div className="header-container">
-          {/* Título principal */}
+          {/* Título principal con logo */}
           <div className="title-section">
-            <h1 className="title-main">
-              <FaCalendarAlt className="title-icon" />
-              Sistema de Reserva de Salas
-            </h1>
-            <p className="title-subtitle">Reserva tu sala de reuniones de manera rápida y eficiente</p>
+            <div className="title-with-logo">
+              <img 
+                src="/src/assets/Fondo blanco.png" 
+                alt="Logo Hulux" 
+                className="app-logo"
+              />
+              <div className="title-content">
+                <h1 className="title-main">
+                  <FaCalendarAlt className="title-icon" />
+                  Sistema de Reserva de Salas
+                </h1>
+                <p className="title-subtitle">Reserva tu sala de reuniones de manera rápida y eficiente</p>
+              </div>
+            </div>
           </div>
           
           {/* Navegación reorganizada: Usuario -> Navegación -> Cerrar sesión */}
@@ -487,8 +580,8 @@ function App() {
 
                   {/* Selección de horarios mejorada */}
                   <div className="mb-3">
-                    <label className="form-label fw-bold mb-3" style={{color: '#2C3E50'}}>
-                      <FaClock className="me-2" style={{color: '#E67E22'}} />
+                    <label className="form-label fw-bold mb-3" style={{color: 'var(--hulux-azul-oscuro)'}}>
+                      <FaClock className="me-2" style={{color: 'var(--hulux-naranja)'}} />
                       Horario de la reserva*
                     </label>
                     
@@ -516,8 +609,8 @@ function App() {
                               style={{
                                 fontSize: '1.1rem',
                                 padding: '8px',
-                                backgroundColor: esHorarioDisponible(hora) ? '' : '#ffe6e6',
-                                color: esHorarioDisponible(hora) ? '' : '#dc3545'
+                                backgroundColor: esHorarioDisponible(hora) ? '' : 'rgba(220, 53, 69, 0.1)',
+                                color: esHorarioDisponible(hora) ? 'var(--hulux-azul-oscuro)' : '#dc3545'
                               }}
                             >
                               {hora} {!esHorarioDisponible(hora) ? '(Ocupado)' : ''}
@@ -628,7 +721,10 @@ function App() {
                   )}
 
                   <div>
-                    <label className="form-label fw-semibold small">Materiales adicionales</label>
+                    <label className="form-label fw-semibold small">
+                      Materiales adicionales <span className="text-danger">*</span>
+                    </label>
+                    <small className="text-muted d-block mb-2">Selecciona al menos un material</small>
                     <div className="d-flex flex-column gap-1">
                       {['Proyector', 'Pizarra', 'Sistema de audio', 'Videoconferencia'].map(material => (
                         <div key={material} className="form-check form-check-inline">
@@ -652,13 +748,15 @@ function App() {
                   <button 
                     type="submit" 
                     className="btn fw-bold mt-auto text-white"
+                    disabled={!formularioCompleto()}
                     style={{
-                      backgroundColor: '#E67E22',
-                      borderColor: '#E67E22',
+                      backgroundColor: formularioCompleto() ? 'var(--hulux-naranja)' : '#cccccc',
+                      borderColor: formularioCompleto() ? 'var(--hulux-naranja)' : '#cccccc',
                       fontSize: '1.1rem',
                       padding: '12px 24px',
                       minHeight: '50px',
-                      borderRadius: '8px'
+                      borderRadius: '8px',
+                      cursor: formularioCompleto() ? 'pointer' : 'not-allowed'
                     }}
                   >
                     <FaCalendarAlt className="me-2" />
@@ -686,13 +784,13 @@ function App() {
                   })}
                 </p>
               </div>
-              <div className="card-body d-flex flex-column justify-content-center" style={{minHeight:'0'}}>
+              <div className="card-body d-flex flex-column justify-content-center p-4" style={{minHeight: '500px'}}>
                 <div className="d-flex justify-content-center flex-grow-1 align-items-center">
                   <Calendar
                     onChange={setSelectedDate}
                     value={selectedDate}
                     locale="es-ES"
-                    className="react-calendar-custom"
+                    className="react-calendar-custom w-100"
                     tileClassName={({ date }) => {
                       const today = new Date()
                       const isToday = date.toDateString() === today.toDateString()

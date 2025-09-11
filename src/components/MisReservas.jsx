@@ -82,13 +82,13 @@ function MisReservas({ user, onVolver }) {
   return (
     <div className="container-fluid p-4 app-container">
       {/* Header mejorado con colores Hulux */}
-      <div className="mb-4 p-4 text-white" style={{background: 'linear-gradient(135deg, #2C3E50 0%, #E67E22 100%)', borderRadius: '15px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)'}}>
+      <div className="mb-4 p-4 text-white" style={{background: 'linear-gradient(135deg, var(--hulux-azul-oscuro) 0%, var(--hulux-morado) 100%)', borderRadius: '15px', boxShadow: '0 10px 25px rgba(17,41,62,0.2)'}}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
           <div className="d-flex align-items-center gap-3">
             <button
               className="btn btn-lg shadow-sm fw-semibold d-flex align-items-center"
               onClick={onVolver}
-              style={{backgroundColor: 'white', color: '#2C3E50', borderRadius: '12px'}}
+              style={{backgroundColor: 'var(--hulux-celeste)', color: 'var(--hulux-azul-oscuro)', borderRadius: '12px'}}
             >
               <FaArrowLeft className="me-2" />
               Volver al Calendario
@@ -107,8 +107,8 @@ function MisReservas({ user, onVolver }) {
             </div>
           </div>
           <div className="d-flex align-items-center">
-            <div className="badge p-3 d-flex align-items-center shadow-sm" style={{backgroundColor: 'white', color: '#2C3E50', borderRadius: '12px', fontSize: '0.9rem'}}>
-              <FaUser className="me-2" style={{color: '#E67E22'}} />
+            <div className="badge p-3 d-flex align-items-center shadow-sm" style={{backgroundColor: 'var(--hulux-verde-lima)', color: 'var(--hulux-azul-oscuro)', borderRadius: '12px', fontSize: '0.9rem'}}>
+              <FaUser className="me-2" style={{color: 'var(--hulux-azul-oscuro)'}} />
               <span className="fw-bold">{user?.displayName || user?.email}</span>
             </div>
           </div>
@@ -136,8 +136,8 @@ function MisReservas({ user, onVolver }) {
                   className="btn btn-lg fw-semibold px-4 py-3 text-white" 
                   onClick={onVolver}
                   style={{
-                    backgroundColor: '#E67E22',
-                    borderColor: '#E67E22',
+                    backgroundColor: 'var(--hulux-naranja)',
+                    borderColor: 'var(--hulux-naranja)',
                     borderRadius: '12px',
                     fontSize: '1.1rem'
                   }}

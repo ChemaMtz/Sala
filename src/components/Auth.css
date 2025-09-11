@@ -1,39 +1,39 @@
-/* Estilos para Login y Register */
+/* Estilos para Login y Register con colores Hulux */
 
-/* Asegurar que el fondo sea visible */
+/* Los contenedores de login y register ahora heredan el fondo global */
 .login-container, .register-container {
-  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
   min-height: 100vh;
+  position: relative;
 }
 
-/* Estilos para labels y texto */
+/* Estilos para labels y texto con colores Hulux */
 .form-label {
-  color: #2C3E50 !important;
+  color: var(--hulux-azul-oscuro) !important;
   font-weight: 600;
 }
 
 .form-text {
-  color: #6c757d !important;
+  color: var(--hulux-morado) !important;
 }
 
 .form-text .text-info {
-  color: #17a2b8 !important;
+  color: var(--hulux-celeste) !important;
 }
 
 .form-text code {
-  background-color: #f8f9fa;
-  color: #e83e8c;
+  background-color: var(--hulux-gris-claro);
+  color: var(--hulux-naranja);
   padding: 2px 6px;
   border-radius: 4px;
 }
 
-/* Enlaces */
+/* Enlaces con colores Hulux */
 .text-primary {
-  color: #2C3E50 !important;
+  color: var(--hulux-azul-oscuro) !important;
 }
 
 .text-primary:hover {
-  color: #E67E22 !important;
+  color: var(--hulux-naranja) !important;
 }
 
 /* Mensajes */
@@ -41,60 +41,60 @@
   margin-top: 1rem;
 }
 
-/* Botones */
+/* Botones con colores Hulux */
 .btn-primary {
-  background-color: #2C3E50;
-  border-color: #2C3E50;
+  background-color: var(--hulux-azul-oscuro);
+  border-color: var(--hulux-azul-oscuro);
 }
 
 .btn-primary:hover {
-  background-color: #1a252f;
-  border-color: #1a252f;
+  background-color: var(--hulux-morado);
+  border-color: var(--hulux-morado);
 }
 
 .btn-google {
-  background-color: #E67E22;
-  border-color: #E67E22;
+  background-color: var(--hulux-naranja);
+  border-color: var(--hulux-naranja);
   color: white;
 }
 
 .btn-google:hover {
-  background-color: #d35400;
-  border-color: #d35400;
+  background-color: #e55400;
+  border-color: #e55400;
   color: white;
 }
 
-/* Texto en general */
+/* Texto en general con colores Hulux */
 .card-body {
-  color: #212529;
+  color: var(--hulux-azul-oscuro);
 }
 
 .card-body p, .card-body small, .card-body span {
-  color: #6c757d;
+  color: var(--hulux-morado);
 }
 
 /* Checkbox y recordar */
 .form-check-label {
-  color: #2C3E50 !important;
+  color: var(--hulux-azul-oscuro) !important;
 }
 
-/* Inputs */
+/* Inputs con colores Hulux */
 .form-control {
   border: 2px solid #dee2e6;
 }
 
 .form-control:focus {
-  border-color: #E67E22;
-  box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25);
+  border-color: var(--hulux-naranja);
+  box-shadow: 0 0 0 0.25rem rgba(255, 94, 0, 0.25);
 }
 
 /* Mejoras para tarjetas de reservas */
 .card .text-dark {
-  color: #212529 !important;
+  color: var(--hulux-azul-oscuro) !important;
 }
 
 .card .text-secondary {
-  color: #6c757d !important;
+  color: var(--hulux-morado) !important;
 }
 
 .card small {
@@ -102,11 +102,11 @@
 }
 
 .reserva-materiales {
-  color: #2C3E50 !important;
+  color: var(--hulux-azul-oscuro) !important;
   font-weight: 600;
 }
 
 .reserva-materiales-list {
-  color: #495057 !important;
+  color: var(--hulux-morado) !important;
   font-weight: 400;
 }

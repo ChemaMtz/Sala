@@ -1,13 +1,13 @@
 /* Header y Navegación - Estilos Hulux */
 
-/* Fondo general de la aplicación */
+/* Fondo general de la aplicación con gradiente Hulux */
 body {
-  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  background: linear-gradient(135deg, var(--hulux-azul-oscuro) 0%, var(--hulux-morado) 50%, var(--hulux-celeste) 100%);
   min-height: 100vh;
 }
 
 .app-container {
-  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  background: transparent;
   min-height: 100vh;
 }
 
@@ -16,34 +16,35 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Título principal */
+/* Título principal con colores Hulux */
 .title-section {
   text-align: center;
   margin-bottom: 1.5rem;
   padding: 1.5rem;
   background-color: white;
   border-radius: 0.75rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  border: 1px solid #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(17, 41, 62, 0.075);
+  border: 1px solid var(--hulux-celeste);
 }
 
 .title-main {
   font-weight: bold;
   font-size: 1.75rem;
   margin-bottom: 0.5rem;
+  color: var(--hulux-azul-oscuro);
 }
 
 .title-icon {
-  color: #E67E22;
+  color: var(--hulux-naranja);
   margin-right: 0.75rem;
 }
 
 .title-subtitle {
-  color: #6c757d;
+  color: var(--hulux-morado);
   margin-bottom: 0;
 }
 
-/* Barra de navegación */
+/* Barra de navegación con colores Hulux */
 .navigation-bar {
   display: flex;
   flex-direction: column;
@@ -53,8 +54,8 @@ body {
   padding: 1rem;
   background-color: white;
   border-radius: 0.75rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  border: 1px solid #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(17, 41, 62, 0.075);
+  border: 1px solid var(--hulux-celeste);
 }
 
 @media (min-width: 992px) {
@@ -71,18 +72,18 @@ body {
 }
 
 .user-badge {
-  background-color: #2C3E50;
+  background-color: var(--hulux-azul-oscuro);
   color: white;
   border-radius: 15px;
   font-size: 0.95rem;
   padding: 0.75rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--hulux-celeste);
   display: flex;
   align-items: center;
 }
 
 .user-icon {
-  color: #E67E22;
+  color: var(--hulux-naranja);
   font-size: 1.1rem;
   margin-right: 0.5rem;
 }
@@ -99,11 +100,11 @@ body {
 }
 
 .nav-button-group {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1rem rgba(17, 41, 62, 0.15);
   transform: scale(1.1);
 }
 
-/* Botones de navegación */
+/* Botones de navegación con colores Hulux */
 .nav-button {
   font-weight: bold;
   padding: 0.75rem 1rem;
@@ -115,37 +116,37 @@ body {
 
 .nav-button-calendario {
   background-color: white;
-  color: #212529;
-  border-color: #2C3E50;
+  color: var(--hulux-azul-oscuro);
+  border-color: var(--hulux-azul-oscuro);
   border-radius: 15px 0 0 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(17, 41, 62, 0.1);
 }
 
 .nav-button-calendario.active {
-  background-color: #2C3E50;
+  background-color: var(--hulux-azul-oscuro);
   color: white;
-  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+  box-shadow: 0 4px 15px rgba(17, 41, 62, 0.3);
   transform: translateY(-2px);
 }
 
 .nav-button-reservas {
   background-color: white;
-  color: #212529;
-  border-color: #E67E22;
+  color: var(--hulux-naranja);
+  border-color: var(--hulux-naranja);
   border-radius: 0;
   border-left: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 94, 0, 0.1);
 }
 
 .nav-button-reservas.active {
-  background-color: #E67E22;
+  background-color: var(--hulux-naranja);
   color: white;
-  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
   transform: translateY(-2px);
 }
 
 .nav-button-reservas.no-admin {
-  border-right: 3px solid #E67E22;
+  border-right: 3px solid var(--hulux-naranja);
 }
 
 .nav-button-admin {
