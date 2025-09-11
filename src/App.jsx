@@ -465,7 +465,7 @@ function App() {
           <div className="title-section">
             <div className="title-with-logo">
               <img 
-                src="/src/assets/Fondo blanco.png" 
+                src="/logo-hulux.png" 
                 alt="Logo Hulux" 
                 className="app-logo"
               />
