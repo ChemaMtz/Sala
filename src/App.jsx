@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import AdminPanel from './components/AdminPanel'
 import MisReservas from './components/MisReservas'
+import UserProfile from './components/UserProfile'
 import { auth, db } from './firebase/config'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { collection, addDoc, query, where, doc, getDoc, onSnapshot, getDocs } from 'firebase/firestore'
@@ -258,8 +259,8 @@ function App() {
 Nueva Reserva de Sala - Sistema Hulux
 
 📋 DETALLES DE LA RESERVA:
-• Solicitante: ${datosReserva.usuarioEmail}
-• Nombre/Evento: ${datosReserva.nombre}
+• Correo: ${datosReserva.usuarioEmail}
+• Nombre: ${datosReserva.nombre}
 • Categoría: ${datosReserva.categoria}
 • Fecha: ${datosReserva.fechaFormateada}
 • Horario: ${datosReserva.horaInicio} - ${datosReserva.horaFin}
@@ -623,6 +624,10 @@ Sistema de Reservas Hulux
     if (vistaActual === 'misReservas') {
       return <MisReservas user={user} onVolver={() => setVistaActual('calendario')} />
     }
+
+    if (vistaActual === 'perfil') {
+      return <UserProfile onBack={() => setVistaActual('calendario')} />
+    }
     
     // Vista principal del calendario (por defecto)
     return (
@@ -651,10 +656,16 @@ Sistema de Reservas Hulux
           <div className="navigation-bar">
             {/* Información del usuario - Al principio */}
             <div className="user-info-container">
-              <span className="user-badge">
-                <FaUser className="user-icon" />
-                <span className="user-name">{user.displayName || user.email}</span>
-              </span>
+              <button
+                className="btn admin-profile-btn"
+                onClick={() => setVistaActual('perfil')}
+                title="Configuración de perfil"
+              >
+                <FaUser className="admin-profile-icon" />
+                <span className="admin-profile-text">
+                  {user.displayName || user.email?.split('@')[0] || 'Usuario'}
+                </span>
+              </button>
             </div>
             
             {/* Navegación principal centrada */}

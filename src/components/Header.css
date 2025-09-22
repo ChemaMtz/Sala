@@ -69,27 +69,41 @@ body {
 .user-info-container {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.user-badge {
+
+/* Botón ADMIN combinado */
+.admin-profile-btn {
   background-color: var(--hulux-azul-oscuro);
   color: white;
+  border: none;
   border-radius: 15px;
-  font-size: 0.95rem;
-  padding: 0.75rem;
-  border: 1px solid var(--hulux-celeste);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   display: flex;
   align-items: center;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px rgba(17, 41, 62, 0.15);
+  transition: all 0.3s ease;
+  outline: none;
 }
-
-.user-icon {
+.admin-profile-btn:hover, .admin-profile-btn:focus {
+  background-color: var(--hulux-morado);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(126, 87, 194, 0.2);
+}
+.admin-profile-icon {
   color: var(--hulux-naranja);
-  font-size: 1.1rem;
-  margin-right: 0.5rem;
+  font-size: 1.3rem;
 }
-
-.user-name {
-  font-weight: 600;
+.admin-profile-text {
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
 }
 
 /* Contenedor navegación principal */
@@ -115,53 +129,53 @@ body {
 }
 
 .nav-button-calendario {
-  background-color: white;
-  color: var(--hulux-azul-oscuro);
-  border-color: var(--hulux-azul-oscuro);
+  background-color: #f8f9fa;
+  color: black;
+  border-color: #dee2e6;
   border-radius: 15px 0 0 15px;
-  box-shadow: 0 2px 8px rgba(17, 41, 62, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button-calendario.active {
-  background-color: var(--hulux-azul-oscuro);
-  color: white;
-  box-shadow: 0 4px 15px rgba(17, 41, 62, 0.3);
+  background-color: #e9ecef;
+  color: black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
 .nav-button-reservas {
-  background-color: white;
-  color: var(--hulux-naranja);
-  border-color: var(--hulux-naranja);
+  background-color: #f8f9fa;
+  color: black;
+  border-color: #dee2e6;
   border-radius: 0;
   border-left: none;
-  box-shadow: 0 2px 8px rgba(255, 94, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button-reservas.active {
-  background-color: var(--hulux-naranja);
-  color: white;
-  box-shadow: 0 4px 15px rgba(255, 94, 0, 0.3);
+  background-color: #e9ecef;
+  color: black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
 .nav-button-reservas.no-admin {
-  border-right: 3px solid var(--hulux-naranja);
+  border-right: 3px solid #dee2e6;
 }
 
 .nav-button-admin {
-  background-color: white;
-  color: #212529;
-  border-color: #E67E22;
+  background-color: #f8f9fa;
+  color: black;
+  border-color: #dee2e6;
   border-radius: 0 15px 15px 0;
   border-left: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button-admin.active {
-  background-color: #E67E22;
-  color: white;
-  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+  background-color: #e9ecef;
+  color: black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
