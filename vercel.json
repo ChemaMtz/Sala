@@ -1,0 +1,21 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "env": {
+    "VITE_FIREBASE_API_KEY": "AIzaSyDQ5WfHhVnHClDS1lMCDS1EuQahejoSEs4",
+    "VITE_FIREBASE_AUTH_DOMAIN": "salar-3089a.firebaseapp.com",
+    "VITE_FIREBASE_PROJECT_ID": "salar-3089a",
+    "VITE_FIREBASE_STORAGE_BUCKET": "salar-3089a.firebasestorage.app",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "9306042415",
+    "VITE_FIREBASE_APP_ID": "1:9306042415:web:bad149527f50016a2956da"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

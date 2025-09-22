@@ -14,7 +14,6 @@ import { collection, addDoc, query, where, doc, getDoc, onSnapshot, getDocs } fr
 import { FaCalendarAlt, FaClipboardList, FaSignOutAlt, FaUser, FaCog, FaClock, FaExclamationTriangle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import huluxBackground from './assets/huluxfondo.jpeg'
 import emailjs from '@emailjs/browser'
 import { EMAIL_CONFIG } from './config/emailConfig'
 
@@ -46,7 +45,7 @@ function App() {
   // Aplica el fondo de Hulux globalmente en toda la aplicación usando JavaScript
   useEffect(() => {
     // Aplicar la imagen de fondo directamente con JavaScript
-    document.body.style.backgroundImage = `url(${huluxBackground})`
+    document.body.style.backgroundImage = `url(/huluxfondo.jpeg)`
     document.body.style.backgroundSize = 'cover'
     document.body.style.backgroundPosition = 'center center'
     document.body.style.backgroundRepeat = 'no-repeat'
