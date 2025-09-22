@@ -331,3 +331,28 @@ button.btn-primary:active {
   color: white !important;
   box-shadow: 0 0 0 0.25rem rgba(31, 41, 55, 0.25) !important;
 }
+
+/* Excepción para el botón de logout - mantener su estilo naranja */
+.logout-button,
+button.logout-button {
+  background-color: #E67E22 !important;
+  border-color: #E67E22 !important;
+  color: white !important;
+}
+
+.logout-button:hover,
+button.logout-button:hover {
+  background-color: #D35400 !important;
+  border-color: #D35400 !important;
+  color: white !important;
+}
+
+.logout-button:focus,
+.logout-button:active,
+button.logout-button:focus,
+button.logout-button:active {
+  background-color: #E67E22 !important;
+  border-color: #E67E22 !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25) !important;
+}
