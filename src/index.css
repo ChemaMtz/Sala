@@ -19,6 +19,11 @@
   --tertiary-color: var(--hulux-morado);
   --light-color: var(--hulux-celeste);
   
+  /* Variables adicionales para UserProfile */
+  --hulux-primary: var(--hulux-azul-oscuro);
+  --hulux-secondary: var(--hulux-morado);
+  --hulux-text: var(--hulux-azul-oscuro);
+  
   /* Gradientes con colores Hulux */
   --bg-gradient-primary: linear-gradient(135deg, var(--hulux-azul-oscuro) 0%, var(--hulux-morado) 50%, var(--hulux-celeste) 100%);
   --bg-gradient-accent: linear-gradient(135deg, var(--hulux-naranja) 0%, var(--hulux-verde-lima) 100%);
