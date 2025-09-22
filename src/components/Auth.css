@@ -45,11 +45,13 @@
 .btn-primary {
   background-color: var(--hulux-azul-oscuro);
   border-color: var(--hulux-azul-oscuro);
+  color: white !important;
 }
 
 .btn-primary:hover {
   background-color: var(--hulux-morado);
   border-color: var(--hulux-morado);
+  color: white !important;
 }
 
 .btn-google {

@@ -21,16 +21,16 @@
 }
 
 .profile-header {
-  background: linear-gradient(135deg, var(--hulux-primary), var(--hulux-secondary));
-  color: rgb(10, 10, 10);
+  background: #1f2937;
+  color: white;
   padding: 20px 30px;
   position: relative;
 }
 
 .back-button {
   background: rgba(255, 255, 255, 0.2);
-  border: 2px solid black;
-  color: rgb(14, 13, 13);
+  border: 2px solid white;
+  color: white;
   padding: 8px 15px;
   border-radius: 8px;
   cursor: pointer;
@@ -69,13 +69,13 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--hulux-primary), var(--hulux-secondary));
+  background: #1f2937;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: white;
   margin-bottom: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(31, 41, 55, 0.3);
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -189,14 +189,16 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--hulux-primary), var(--hulux-secondary));
-  color: black;
-  border: 2px solid black;
+  background: #1f2937 !important;
+  color: white !important;
+  border: 2px solid #1f2937 !important;
 }
 
 .btn-primary:hover:not(:disabled) {
+  background: #374151 !important;
+  border-color: #374151 !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(126, 87, 194, 0.3);
+  box-shadow: 0 8px 25px rgba(31, 41, 55, 0.3);
 }
 
 .btn-success {

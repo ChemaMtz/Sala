@@ -100,7 +100,7 @@ function MisReservas({ user, onVolver }) {
               <p className="mb-0 opacity-75" style={{fontSize: '1.1rem'}}>
                 {reservas.length === 0 
                   ? 'Aún no tienes reservas registradas' 
-                  : `Gestiona todas tus reservas de salas (${reservas.length} reservas)`
+                  : `Administre reservas y espacios corporativos (${reservas.length} reservas)`
                 }
               </p>
             </div>
@@ -127,8 +127,8 @@ function MisReservas({ user, onVolver }) {
                 No tienes reservas registradas
               </h4>
               <p className="text-muted mb-4 fs-5">
-                Aún no has realizado ninguna reserva de sala. <br />
-                ¡Es hora de planificar tu próxima reunión!
+                Bienvenido a tu centro de gestión. <br />
+                ¡Comience reservando su primera sala de reuniones!
               </p>
               <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
                 <button 

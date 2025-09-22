@@ -166,15 +166,16 @@ html::before {
 
 /* Botones con colores Hulux */
 .btn-primary {
-  background-color: var(--hulux-azul-oscuro);
-  border-color: var(--hulux-azul-oscuro);
-  color: white;
+  background-color: #1f2937 !important;
+  border-color: #1f2937 !important;
+  color: white !important;
   font-weight: 600;
 }
 
 .btn-primary:hover {
-  background-color: var(--hulux-morado);
-  border-color: var(--hulux-morado);
+  background-color: #374151 !important;
+  border-color: #374151 !important;
+  color: white !important;
 }
 
 .btn-warning {

@@ -165,9 +165,9 @@ function Register({ onRegister, switchToLogin }) {
         <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
           <div className="card shadow-lg">
             <div className="card-header text-center border-0 pb-0" style={{background: 'var(--hulux-azul-oscuro)', color: 'black', borderRadius: '0.375rem 0.375rem 0 0'}}>
-              <h2 className="fw-bold mb-1">🏢 Reserva Sala de Juntas</h2>
+              <h2 className="fw-bold mb-1">🏢 Hulux Espacios Corporativos</h2>
               <h4 className="fw-semibold" style={{color: 'var(--hulux-naranja)'}}>Crear Cuenta</h4>
-              <p className="small mb-0 opacity-75">Únete para gestionar reservas de salas</p>
+              <p className="small mb-0 opacity-75">Acceda a la gestión integral de espacios de reunión</p>
             </div>
             <div className="card-body pt-4">
               <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
@@ -183,7 +183,7 @@ function Register({ onRegister, switchToLogin }) {
                       value={formData.nombre}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="Tu nombre completo"
+                      placeholder="Ej: Ana María Rodríguez"
                       required
                     />
                   </div>
@@ -199,12 +199,12 @@ function Register({ onRegister, switchToLogin }) {
                       value={formData.email}
                       onChange={handleChange}
                       className="form-control"
-                      placeholder="ejemplo@empresa.com"
+                      placeholder="nombre@empresa.com"
                       required
                     />
                     <div className="form-text">
                       <small style={{color: 'black'}}>
-                        💡 <strong style={{color: 'black'}}>Nota:</strong> Use <code>admin@hulux.com</code> para acceso de administrador
+                        💡 <strong style={{color: 'black'}}>Administrador:</strong> Use <code>admin@hulux.com</code> para gestión completa de eventos
                       </small>
                     </div>
                   </div>
@@ -221,7 +221,7 @@ function Register({ onRegister, switchToLogin }) {
                         value={formData.password}
                         onChange={handleChange}
                         className="form-control"
-                        placeholder="Mínimo 6 caracteres"
+                        placeholder="Contraseña segura (mín. 6 caracteres)"
                         required
                       />
                       <button
@@ -246,7 +246,7 @@ function Register({ onRegister, switchToLogin }) {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         className="form-control"
-                        placeholder="Repite tu contraseña"
+                        placeholder="Confirme su contraseña"
                         required
                       />
                       <button

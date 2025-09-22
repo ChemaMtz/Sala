@@ -253,7 +253,7 @@ function App() {
         reserva_duracion: calcularDuracion(datosReserva.horaInicio, datosReserva.horaFin),
         reserva_materiales: datosReserva.materiales.join(', '),
         mensaje_completo: `
-Nueva Reserva de Sala - Sistema Hulux
+Confirmación de Reserva - Hulux Espacios Corporativos
 
 📋 DETALLES DE LA RESERVA:
 • Correo: ${datosReserva.usuarioEmail}
@@ -635,9 +635,9 @@ Sistema de Reservas Hulux
               <div className="title-content">
                 <h1 className="title-main">
                   <FaCalendarAlt className="title-icon" />
-                  Sistema de Reserva de Salas
+                  Hulux Espacios Corporativos
                 </h1>
-                <p className="title-subtitle">Reserva tu sala de reuniones de manera rápida y eficiente</p>
+                <p className="title-subtitle">Gestiona espacios corporativos con elegancia y eficiencia</p>
               </div>
             </div>
           </div>
@@ -1026,7 +1026,7 @@ Sistema de Reservas Hulux
                                     {reserva.horaInicio} - {reserva.horaFin}
                                   </div>
                                   <small className="text-muted">
-                                    {reserva.categoria} • Sala ocupada
+                                    {reserva.categoria} • Espacio reservado
                                   </small>
                                 </div>
                                 <div className="text-end">

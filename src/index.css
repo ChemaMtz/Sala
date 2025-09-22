@@ -4,7 +4,7 @@
   font-weight: 400;
   
   /* Paleta de colores corporativos Hulux */
-  --hulux-azul-oscuro: #11293E;
+  --hulux-azul-oscuro: #1f2937;
   --hulux-naranja: #FF5E00;
   --hulux-verde-lima: #CDDB00;
   --hulux-morado: #70003F;
@@ -305,4 +305,29 @@ button:focus-visible {
 @media (max-height: 700px) {
   .react-calendar-custom .react-calendar__tile { padding: 8px 2px; font-size: 12px; }
   .react-calendar-custom .react-calendar__navigation__label { font-size: 16px; }
+}
+
+/* Estilos globales para botones primarios */
+.btn-primary,
+button.btn-primary {
+  background-color: #1f2937 !important;
+  border-color: #1f2937 !important;
+  color: white !important;
+}
+
+.btn-primary:hover,
+button.btn-primary:hover {
+  background-color: #374151 !important;
+  border-color: #374151 !important;
+  color: white !important;
+}
+
+.btn-primary:focus,
+.btn-primary:active,
+button.btn-primary:focus,
+button.btn-primary:active {
+  background-color: #111827 !important;
+  border-color: #111827 !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.25rem rgba(31, 41, 55, 0.25) !important;
 }

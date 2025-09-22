@@ -191,11 +191,11 @@ function UserProfile({ onBack }) {
                   value={editData.displayName}
                   onChange={handleInputChange}
                   className="form-control"
-                  placeholder="Ingresa tu nombre completo"
+                  placeholder="Ej: María Elena González"
                 />
               ) : (
                 <div className="profile-value">
-                  {userProfile.displayName || 'No especificado'}
+                  {userProfile.displayName || 'Nombre no configurado'}
                 </div>
               )}
             </div>

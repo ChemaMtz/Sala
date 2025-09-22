@@ -13,21 +13,21 @@ export const EMAIL_CONFIG = {
 
 // Ejemplo de template para EmailJS:
 /*
-Título del template: Nueva Reserva de Sala - Hulux
+Título del template: Confirmación de Reserva - Hulux Espacios Corporativos
 
 Contenido del template:
-Hola,
+Estimado/a {{usuario_nombre}},
 
-Se ha realizado una nueva reserva en el sistema:
+Su reserva ha sido confirmada exitosamente en nuestro sistema corporativo.
 
-📋 DETALLES DE LA RESERVA:
-• Usuario: {{usuario_nombre}}
-• Nombre/Evento: {{reserva_nombre}}
+📋 CONFIRMACIÓN DE RESERVA:
+• Responsable: {{usuario_nombre}}
+• Evento/Reunión: {{reserva_nombre}}
 • Categoría: {{reserva_categoria}}
-• Fecha: {{reserva_fecha}}
+• Fecha programada: {{reserva_fecha}}
 • Horario: {{reserva_hora_inicio}} - {{reserva_hora_fin}}
-• Duración: {{reserva_duracion}}
-• Materiales: {{reserva_materiales}}
+• Duración total: {{reserva_duracion}}
+• Recursos solicitados: {{reserva_materiales}}
 
 ⏰ RECORDATORIO:
 El material y las llaves deben estar listos 5 minutos antes del inicio.

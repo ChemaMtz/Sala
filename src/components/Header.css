@@ -2,7 +2,7 @@
 
 /* Fondo general de la aplicación con gradiente Hulux */
 body {
-  background: linear-gradient(135deg, var(--hulux-azul-oscuro) 0%, var(--hulux-morado) 50%, var(--hulux-celeste) 100%);
+  background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
   min-height: 100vh;
 }
 

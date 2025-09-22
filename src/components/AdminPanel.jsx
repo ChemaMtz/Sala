@@ -134,7 +134,7 @@ function AdminPanel({ user, onVolver }) {
       {/* Estadísticas mejoradas con colores Hulux */}
       <div className="row g-2 g-md-4 mb-4">
         <div className="col-12 col-md-4">
-          <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, var(--hulux-morado) 0%, var(--hulux-celeste) 100%)', borderRadius: '15px'}}>
+          <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, #1f2937 0%, #374151 100%)', borderRadius: '15px'}}>
             <div className="card-body text-center p-3 p-md-4" style={{color: 'white'}}>
               <div className="d-flex align-items-center justify-content-center mb-2 mb-md-3">
                 <FaChartBar style={{fontSize: window.innerWidth <= 768 ? '2rem' : '2.5rem', color: 'white'}} />
@@ -156,7 +156,7 @@ function AdminPanel({ user, onVolver }) {
           </div>
         </div>
         <div className="col-12 col-md-4">
-          <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, var(--hulux-morado) 0%, var(--hulux-celeste) 100%)', borderRadius: '15px'}}>
+          <div className="card border-0 shadow-lg h-100" style={{background: 'linear-gradient(135deg, #1f2937 0%, #374151 100%)', borderRadius: '15px'}}>
             <div className="card-body text-center p-3 p-md-4" style={{color: 'white'}}>
               <div className="d-flex align-items-center justify-content-center mb-2 mb-md-3">
                 <FaUser style={{fontSize: window.innerWidth <= 768 ? '2rem' : '2.5rem', color: 'white', opacity: 0.9}} />
