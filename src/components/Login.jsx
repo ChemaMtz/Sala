@@ -47,7 +47,6 @@ function Login({ onLogin, switchToRegister }) {
         displayName: user.displayName
       })
     } catch (error) {
-      console.error('Error en login con Google:', error)
       let errorMessage = 'Error al iniciar sesión con Google'
       
       switch (error.code) {

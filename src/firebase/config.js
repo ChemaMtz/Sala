@@ -31,9 +31,15 @@ googleProvider.setCustomParameters({
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-// Initialize Analytics (optional)
-if (typeof window !== 'undefined') {
-  getAnalytics(app);
+// Initialize Analytics (optional) - Solo en el navegador
+let analytics = null;
+if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+  try {
+    analytics = getAnalytics(app);
+  } catch {
+    // Analytics no se pudo inicializar
+  }
 }
 
+export { analytics };
 export default app;

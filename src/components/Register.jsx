@@ -57,7 +57,6 @@ function Register({ onRegister, switchToLogin }) {
         displayName: user.displayName
       })
     } catch (error) {
-      console.error('Error en registro con Google:', error)
       let errorMessage = 'Error al registrarse con Google'
       
       switch (error.code) {
@@ -135,7 +134,6 @@ function Register({ onRegister, switchToLogin }) {
       })
 
     } catch (error) {
-      console.error('Error en registro:', error)
       let errorMessage = 'Error al crear la cuenta'
       
       switch (error.code) {

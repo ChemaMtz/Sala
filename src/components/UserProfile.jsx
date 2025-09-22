@@ -51,8 +51,7 @@ function UserProfile({ onBack }) {
         displayName: profileData.displayName,
         photoURL: profileData.photoURL
       })
-    } catch (error) {
-      console.error('Error cargando perfil:', error)
+    } catch {
       toast.error('Error al cargar el perfil')
     }
   }
@@ -126,8 +125,7 @@ function UserProfile({ onBack }) {
 
       setIsEditing(false)
       toast.success('Perfil actualizado exitosamente')
-    } catch (error) {
-      console.error('Error actualizando perfil:', error)
+    } catch {
       toast.error('Error al actualizar el perfil')
     } finally {
       setLoading(false)

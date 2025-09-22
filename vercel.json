@@ -4,18 +4,38 @@
   "framework": "vite",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "env": {
-    "VITE_FIREBASE_API_KEY": "AIzaSyDQ5WfHhVnHClDS1lMCDS1EuQahejoSEs4",
-    "VITE_FIREBASE_AUTH_DOMAIN": "salar-3089a.firebaseapp.com",
-    "VITE_FIREBASE_PROJECT_ID": "salar-3089a",
-    "VITE_FIREBASE_STORAGE_BUCKET": "salar-3089a.firebasestorage.app",
-    "VITE_FIREBASE_MESSAGING_SENDER_ID": "9306042415",
-    "VITE_FIREBASE_APP_ID": "1:9306042415:web:bad149527f50016a2956da"
+  "functions": {
+    "src/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
   },
   "routes": [
     {
+      "src": "/test.html",
+      "dest": "/test.html"
+    },
+    {
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|gif|woff|woff2|ttf|eot))",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
     }
   ]
 }

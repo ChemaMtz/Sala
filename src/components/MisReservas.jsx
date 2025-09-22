@@ -40,8 +40,7 @@ function MisReservas({ user, onVolver }) {
           position: "top-right",
           autoClose: 3000
         })
-      } catch (error) {
-        console.error('Error al cancelar reserva:', error)
+      } catch {
         toast.error('Error al cancelar la reserva', {
           position: "top-right",
           autoClose: 3000

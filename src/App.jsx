@@ -108,8 +108,7 @@ function App() {
           })
           setUserRole(rol)
           setCurrentView('dashboard')
-        } catch (error) {
-          console.error('Error al obtener rol de usuario:', error)
+        } catch {
           setUser({
             email: user.email,
             uid: user.uid,
@@ -151,8 +150,8 @@ function App() {
       
       // Limpiar el estado de reserva guardándose cuando se actualicen las reservas
       setReservaGuardandose(null)
-    }, (error) => {
-      console.error('Error al cargar reservas en tiempo real:', error)
+    }, () => {
+      // Error al cargar reservas en tiempo real
     })
 
     return () => unsubscribe()
@@ -239,7 +238,6 @@ function App() {
       if (!EMAIL_CONFIG.SERVICE_ID || EMAIL_CONFIG.SERVICE_ID === 'your_service_id' ||
           !EMAIL_CONFIG.TEMPLATE_ID || EMAIL_CONFIG.TEMPLATE_ID === 'your_template_id' ||
           !EMAIL_CONFIG.PUBLIC_KEY || EMAIL_CONFIG.PUBLIC_KEY === 'your_public_key') {
-        console.warn('EmailJS no está completamente configurado. Saltando envío de email.');
         return false;
       }
 
@@ -270,17 +268,15 @@ Sistema de Reservas Hulux
         `
       };
 
-      const result = await emailjs.send(
+      await emailjs.send(
         EMAIL_CONFIG.SERVICE_ID,
         EMAIL_CONFIG.TEMPLATE_ID,
         templateParams,
         EMAIL_CONFIG.PUBLIC_KEY
       );
 
-      console.log('Correo enviado exitosamente:', result);
       return true;
-    } catch (error) {
-      console.error('Error al enviar correo:', error);
+    } catch {
       // No bloquear la aplicación si falla el email
       return false;
     }
@@ -506,12 +502,8 @@ Sistema de Reservas Hulux
       };
 
       // Intentar enviar el correo (no bloquear si falla)
-      const correoEnviado = await enviarCorreoConfirmacion(datosCorreo);
-      if (correoEnviado) {
-        console.log('Correo de confirmación enviado exitosamente');
-      } else {
-        console.log('No se pudo enviar el correo de confirmación');
-      }
+      // Intentar enviar correo de confirmación
+      await enviarCorreoConfirmacion(datosCorreo);
 
       toast.success(
         `¡Reserva confirmada! ${formData.nombre} - ${categoriaFinal} el ${selectedDate.toLocaleDateString('es-ES')} de ${formData.horaInicio} a ${formData.horaFin}`,
@@ -561,8 +553,7 @@ Sistema de Reservas Hulux
       
       // Las reservas se actualizarán automáticamente por onSnapshot
       
-    } catch (error) {
-      console.error('Error al guardar reserva:', error)
+    } catch {
       // Limpiar estado en caso de error también
       setReservaGuardandose(null)
       toast.error('Error al crear la reserva. Intenta nuevamente.', {
@@ -577,8 +568,8 @@ Sistema de Reservas Hulux
     try {
       await signOut(auth)
       setCurrentView('login')
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error)
+    } catch {
+      // Error al cerrar sesión
     }
   }
 
