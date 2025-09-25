@@ -3,9 +3,9 @@
 
 export const EMAIL_CONFIG = {
   // Obtén estos valores de tu cuenta en https://www.emailjs.com/
-  SERVICE_ID: 'service_idsozow',       // ID del servicio de EmailJS ✅ CONFIGURADO
-  TEMPLATE_ID: 'template_bz44rrd',     // ID del template ✅ CONFIGURADO
-  PUBLIC_KEY: 'WzvjZGt4WimWPWgha',     // Tu clave pública de EmailJS ✅ CONFIGURADO
+  SERVICE_ID: 'service_7fsdx0n',       // ID del servicio de EmailJS ✅ CONFIGURADO
+  TEMPLATE_ID: 'template_55e8ww8',     // ID del template ✅ CONFIGURADO
+  PUBLIC_KEY: 'svMBRlRebSaVlvFQj',     // Tu clave pública de EmailJS ✅ CONFIGURADO
   
   // Email de destino
   TO_EMAIL: '2023humanosdelux@gmail.com'
@@ -28,9 +28,6 @@ Su reserva ha sido confirmada exitosamente en nuestro sistema corporativo.
 • Horario: {{reserva_hora_inicio}} - {{reserva_hora_fin}}
 • Duración total: {{reserva_duracion}}
 • Recursos solicitados: {{reserva_materiales}}
-
-⏰ RECORDATORIO:
-El material y las llaves deben estar listos 5 minutos antes del inicio.
 
 Sistema de Reservas Hulux
 */
