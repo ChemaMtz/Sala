@@ -29,7 +29,7 @@ function Login({ onLogin, switchToRegister }) {
       // Si no existe, crear el perfil del usuario
       if (!userDoc.exists()) {
         // Determinar rol basado en el email
-        const esAdmin = user.email === 'admin@hulux.com'
+        const esAdmin = user.email === '2023humanosdelux@gmail.com'
         
         await setDoc(userDocRef, {
           nombre: user.displayName,
@@ -149,7 +149,7 @@ function Login({ onLogin, switchToRegister }) {
                   />
                   <div className="form-text">
                     <small style={{color: 'black'}}>
-                      💡 <strong style={{color: 'black'}}>Gestión completa:</strong> <code>admin@hulux.com</code>
+                      💡 <strong style={{color: 'black'}}>Gestión completa:</strong> <code>2023humanosdelux@gmail.com</code>
                     </small>
                   </div>
                 </div>

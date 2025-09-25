@@ -7,13 +7,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDQ5WfHhVnHClDS1lMCDS1EuQahejoSEs4",
-  authDomain: "salar-3089a.firebaseapp.com",
-  projectId: "salar-3089a",
-  storageBucket: "salar-3089a.firebasestorage.app",
-  messagingSenderId: "9306042415",
-  appId: "1:9306042415:web:bad149527f50016a2956da",
-  measurementId: "G-FYC31GKCJ0"
+  apiKey: "AIzaSyCSVXaEttnWkVilULncGMXoLodKEWsUU2o",
+  authDomain: "basedatos-m.firebaseapp.com",
+  projectId: "basedatos-m",
+  storageBucket: "basedatos-m.firebasestorage.app",
+  messagingSenderId: "560580028581",
+  appId: "1:560580028581:web:9b5e5b15ad1adbebe2054c",
+  measurementId: "G-208YD29BQ4"
 };
 
 // Initialize Firebase
@@ -31,15 +31,8 @@ googleProvider.setCustomParameters({
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-// Initialize Analytics (optional) - Solo en el navegador
-let analytics = null;
-if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
-  try {
-    analytics = getAnalytics(app);
-  } catch {
-    // Analytics no se pudo inicializar
-  }
-}
+// Initialize Analytics
+const analytics = getAnalytics(app);
 
 export { analytics };
 export default app;

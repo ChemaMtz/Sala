@@ -8,7 +8,7 @@ export const EMAIL_CONFIG = {
   PUBLIC_KEY: 'WzvjZGt4WimWPWgha',     // Tu clave pública de EmailJS ✅ CONFIGURADO
   
   // Email de destino
-  TO_EMAIL: 'chemjmme@gmail.com'
+  TO_EMAIL: '2023humanosdelux@gmail.com'
 };
 
 // Ejemplo de template para EmailJS:

@@ -39,7 +39,7 @@ function Register({ onRegister, switchToLogin }) {
       // Si no existe, crear el perfil del usuario
       if (!userDoc.exists()) {
         // Determinar rol basado en el email
-        const esAdmin = user.email === 'admin@hulux.com'
+        const esAdmin = user.email === '2023humanosdelux@gmail.com'
         
         await setDoc(userDocRef, {
           nombre: user.displayName,
@@ -115,7 +115,7 @@ function Register({ onRegister, switchToLogin }) {
 
       // Guardar información adicional del usuario en Firestore
       // Determinar rol basado en el email
-      const esAdmin = formData.email === 'admin@hulux.com'
+      const esAdmin = formData.email === '2023humanosdelux@gmail.com'
       
       await setDoc(doc(db, 'usuarios', userCredential.user.uid), {
         nombre: formData.nombre,
@@ -204,7 +204,7 @@ function Register({ onRegister, switchToLogin }) {
                     />
                     <div className="form-text">
                       <small style={{color: 'black'}}>
-                        💡 <strong style={{color: 'black'}}>Administrador:</strong> Use <code>admin@hulux.com</code> para gestión completa de eventos
+                        💡 <strong style={{color: 'black'}}>Administrador:</strong> Use <code>2023humanosdelux@gmail.com</code> para gestión completa de eventos
                       </small>
                     </div>
                   </div>

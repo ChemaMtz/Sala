@@ -5,12 +5,12 @@ Para que la aplicación funcione correctamente en Vercel, debes configurar estas
 ## 🔧 Variables requeridas:
 
 ```
-VITE_FIREBASE_API_KEY=AIzaSyDQ5WfHhVnHClDS1lMCDS1EuQahejoSEs4
-VITE_FIREBASE_AUTH_DOMAIN=salar-3089a.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=salar-3089a
-VITE_FIREBASE_STORAGE_BUCKET=salar-3089a.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=9306042415
-VITE_FIREBASE_APP_ID=1:9306042415:web:bad149527f50016a2956da
+VITE_FIREBASE_API_KEY=AIzaSyCSVXaEttnWkVilULncGMXoLodKEWsUU2o
+VITE_FIREBASE_AUTH_DOMAIN=basedatos-m.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=basedatos-m
+VITE_FIREBASE_STORAGE_BUCKET=basedatos-m.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=560580028581
+VITE_FIREBASE_APP_ID=1:560580028581:web:9b5e5b15ad1adbebe2054c
 ```
 
 ## 📋 Cómo configurar en Vercel:

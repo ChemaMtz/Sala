@@ -145,9 +145,9 @@ function UserProfile({ onBack }) {
       <div className="user-profile-card">
         <div className="profile-header">
           <button className="back-button" onClick={onBack}>
-            <FaArrowLeft /> Volver
+            <FaArrowLeft className="me-2" /> Volver
           </button>
-          <h2><FaUser /> Mi Perfil</h2>
+          <h2><FaUser className="me-2" /> Mi Perfil</h2>
         </div>
 
         <div className="profile-content">
@@ -218,14 +218,14 @@ function UserProfile({ onBack }) {
                   onClick={handleSave}
                   disabled={loading}
                 >
-                  <FaSave /> {loading ? 'Guardando...' : 'Guardar'}
+                  <FaSave className="me-2" /> {loading ? 'Guardando...' : 'Guardar'}
                 </button>
                 <button 
                   className="btn btn-secondary"
                   onClick={handleCancel}
                   disabled={loading}
                 >
-                  <FaTimes /> Cancelar
+                  <FaTimes className="me-2" /> Cancelar
                 </button>
               </>
             ) : (
@@ -233,7 +233,7 @@ function UserProfile({ onBack }) {
                 className="btn btn-primary"
                 onClick={() => setIsEditing(true)}
               >
-                <FaEdit /> Editar Perfil
+                <FaEdit className="me-2" /> Editar Perfil
               </button>
             )}
           </div>
