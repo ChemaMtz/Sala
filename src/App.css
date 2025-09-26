@@ -467,3 +467,37 @@ html::before {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mejoras para alertas en móvil */
+@media (max-width: 576px) {
+  .alert {
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal !important;
+  }
+  
+  .alert .d-flex {
+    flex-wrap: nowrap;
+    align-items: flex-start !important;
+  }
+  
+  .alert small {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    display: block;
+    margin-top: 2px;
+  }
+  
+  .alert .flex-grow-1 {
+    min-width: 0;
+    word-break: break-word;
+  }
+  
+  .alert strong {
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+  }
+}

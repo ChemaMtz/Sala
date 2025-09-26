@@ -1049,11 +1049,17 @@ Sistema de Reservas Hulux
                   </div>
                 ) : (
                   <div className="mt-3 border-top pt-3">
-                    <div className="alert alert-success py-2">
-                      <small>
-                        <FaCalendarAlt className="me-1" />
-                        <strong>¡Día disponible!</strong> No hay reservas para esta fecha. Puedes elegir cualquier horario.
-                      </small>
+                    <div className="alert alert-success py-2 px-3">
+                      <div className="d-flex align-items-center">
+                        <FaCalendarAlt className="me-2 text-success flex-shrink-0" />
+                        <div className="flex-grow-1">
+                          <strong className="d-block">¡Día disponible!</strong>
+                          <small className="text-muted">
+                            <span className="d-none d-sm-inline">No hay reservas para esta fecha. Puedes elegir cualquier horario.</span>
+                            <span className="d-sm-none">Sin reservas. Elige cualquier horario.</span>
+                          </small>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
