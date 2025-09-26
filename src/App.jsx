@@ -41,6 +41,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [reservas, setReservas] = useState([]) // Reservas del día seleccionado
   const [reservaGuardandose, setReservaGuardandose] = useState(null) // Para manejar el estado optimista
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth) // Para detectar móvil
 
   // Aplica el fondo de Hulux globalmente en toda la aplicación usando JavaScript
   useEffect(() => {
@@ -90,6 +91,16 @@ function App() {
   useEffect(() => {
     document.body.classList.add('theme-ocean')
     return () => document.body.classList.remove('theme-ocean')
+  }, [])
+
+  // Listener para detectar cambios de tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+    
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   // Escuchar cambios de autenticación
@@ -975,6 +986,20 @@ Sistema de Reservas Hulux
                     value={selectedDate}
                     locale="es-ES"
                     className="react-calendar-custom w-100"
+                    formatMonthYear={(locale, date) => {
+                      // En móvil mostrar abreviación, en desktop mostrar completo
+                      if (windowWidth <= 640) {
+                        return date.toLocaleDateString('es-ES', { 
+                          month: 'short', 
+                          year: 'numeric' 
+                        });
+                      } else {
+                        return date.toLocaleDateString('es-ES', { 
+                          month: 'long', 
+                          year: 'numeric' 
+                        });
+                      }
+                    }}
                     tileClassName={({ date }) => {
                       const today = new Date()
                       const isToday = date.toDateString() === today.toDateString()
